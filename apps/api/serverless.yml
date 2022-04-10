@@ -1,0 +1,28 @@
+service: api-jojocrafts-co-uk
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+provider:
+  name: aws
+
+functions:
+  guide-get:
+    handler: src/functions/guide/get.handler
+    events:
+      - http:
+          path: guide
+          method: get
+          cors: true
+  guide-get-single:
+    handler: src/functions/guide/get.handler
+    events:
+      - http:
+          path: guide/{id}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                id: true
